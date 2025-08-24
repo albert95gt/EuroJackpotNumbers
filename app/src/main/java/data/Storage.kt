@@ -1,26 +1,41 @@
 package data
 
 import android.content.Context
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
-import androidx.datastore.preferences.core.edit
 
-// 1️⃣ DataStore definíció a Context-hez
+//1️⃣ Kulcs definiálása
 val Context.dataStore by preferencesDataStore(name = "eurojackpot")
+val NUMBERS_LIST_KEY = stringSetPreferencesKey("numbers_list")
+val SPORTKA_LIST_KEY = stringSetPreferencesKey("sportka_numbers")
 
-// 2️⃣ Kulcs a mentett adathoz
-val LAST_NUMBERS_KEY = stringPreferencesKey("last_numbers")
 
-// 3️⃣ Adatok mentése
-suspend fun saveLastNumbers(context: Context, value: String) {
+//2️⃣ Mentés
+suspend fun saveNumbers(context: Context, value: String) {
     context.dataStore.edit { preferences ->
-        preferences[LAST_NUMBERS_KEY] = value
+        val currentSet = preferences[NUMBERS_LIST_KEY] ?: emptySet()
+        preferences[NUMBERS_LIST_KEY] = currentSet + value
     }
 }
 
-// 4️⃣ Adatok betöltése
-suspend fun loadLastNumbers(context: Context): String? {
-    val preferences = context.dataStore.data.first()
-    return preferences[LAST_NUMBERS_KEY]
+suspend fun saveSportkaNumbers(context: Context, value: String) {
+    context.dataStore.edit { preferences ->
+        val currentSet = preferences[SPORTKA_LIST_KEY] ?: emptySet()
+        preferences[SPORTKA_LIST_KEY] = currentSet + value
+    }
 }
+
+//3️⃣ Betöltés
+suspend fun loadNumbers(context: Context): List<String> {
+    val preferences = context.dataStore.data.first()
+    return preferences[NUMBERS_LIST_KEY]?.toList() ?: emptyList()
+}
+
+suspend fun loadSportkaNumbers(context: Context): List<String> {
+    val preferences = context.dataStore.data.first()
+    return preferences[SPORTKA_LIST_KEY]?.toList() ?: emptyList()
+}
+
+
