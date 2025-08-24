@@ -1,10 +1,10 @@
-# EuroJackpotNumbers
+# Lottery numbers generator
 
-An Android app that generates and manages EuroJackpot lottery numbers.
+An Android app that generates and manages EuroJackpot, Sportka lottery numbers.
 
 ## Features
 
-- Generate random EuroJackpot numbers
+- Generate random EuroJackpot, Sportka numbers
 - Save and load generated numbers
 - Simple and clean user interface
 
