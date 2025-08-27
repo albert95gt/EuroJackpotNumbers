@@ -1,6 +1,7 @@
 package com.example.eurojackpotnumbergenerator.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -56,7 +57,7 @@ fun SportkaScreen(navController: NavController) {
             elevation = CardDefaults.cardElevation(20.dp)
         ){
             Text(
-                text = "Generated numbers: $sportkaNumber",
+                text = "New numbers: $sportkaNumber",
                 modifier = Modifier.padding(16.dp)
                 )
         }
@@ -72,6 +73,16 @@ fun SportkaScreen(navController: NavController) {
             }
         ) {
             Text("Generate numbers")
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Button(
+            onClick = {
+                navController.navigate("sportka_history")
+            }
+        ) {
+            Text(text = "View history")
         }
     }
 }

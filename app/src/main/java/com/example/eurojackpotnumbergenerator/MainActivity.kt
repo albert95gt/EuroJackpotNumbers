@@ -11,13 +11,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
-import androidx.navigation.Navigation
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.eurojackpotnumbergenerator.components.BottomNavigationBar
 import com.example.eurojackpotnumbergenerator.components.EuroJackpotNumbersList
 import com.example.eurojackpotnumbergenerator.components.EuroJackpotScreen
+import com.example.eurojackpotnumbergenerator.components.SportkaNumbersList
 import com.example.eurojackpotnumbergenerator.components.SportkaScreen
 import com.example.eurojackpotnumbergenerator.ui.theme.EuroJackpotNumberGeneratorTheme
 
@@ -51,6 +51,8 @@ class MainActivity : ComponentActivity() {
                         composable("home"){ EuroJackpotScreen(navController) }
                         composable("euro_history"){ EuroJackpotNumbersList(navController) }
                         composable("sportka"){ SportkaScreen(navController) }
+                        composable("sportka_history"){ SportkaNumbersList(navController) }
+
                     }
                 }
             }
